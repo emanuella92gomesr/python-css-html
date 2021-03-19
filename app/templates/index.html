@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+
 {% block content %}
-        <h1>Hello {{ user.username }}</h1>
-        <div>
-            {% for post in posts %}
-                <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
-                {% else %}
-                <p>Sorry. There are no posts available</p>
-            {% endfor %}
-        </div>
+<h1>Hello, {{ user.username }}!</h1>
+<form action="{{url_for('post')}}" method="POST">
+    <textarea maxlength=140 name="post" placeholder="say something!"></textarea>
+    <button>Post</button>
+</form>
+<div>
+    {% for post in posts %}
+        <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
+    {% else %}
+        <p>Sorry, there are no posts available!</p>
+    {% endfor %}
+</div>
 {% endblock %}
-  
